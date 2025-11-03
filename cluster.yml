@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: lims-postgres-cluster
+  namespace: pro
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5 # same version as backup postgres
+  enableSuperuserAccess: true
+  storage:
+    storageClass: longhorn
+    size: 100Gi
+  bootstrap:
+    recovery:
+      volumeSnapshots:
+        storage:
+          apiGroup: snapshot.storage.k8s.io
+          kind: VolumeSnapshot
+          name: lims-cold-1
