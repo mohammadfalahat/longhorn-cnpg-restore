@@ -2,10 +2,8 @@ apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
   name: longhorn-snapclass
-  namespace: pro
 driver: driver.longhorn.io
 deletionPolicy: Retain
-parameters: {}
 ---
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
@@ -15,4 +13,4 @@ metadata:
 spec:
   volumeSnapshotClassName: longhorn-snapclass
   source:
-    persistentVolumeClaimName: lims-prod-coldcopy-1
+    persistentVolumeClaimName: cnpg
